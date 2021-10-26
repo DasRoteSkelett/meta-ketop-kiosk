@@ -1,0 +1,67 @@
+software =
+{
+        version = "1.0.0";        
+        stable:
+        {
+                rootfs2:
+                {
+			scripts: (
+        		{
+			        filename = "preinst-rootfs1.sh";
+                		type = "preinstall";
+        		},
+			{
+				filename = "postinst.sh";
+				type = "postinstall";
+			}
+			);
+                        files: (
+                        {
+                                filename = "core-image-ketop-debug-ketop.tar.gz";
+                                device = "/dev/disk/by-partlabel/rootfs1";
+				path = "/";
+				type = "archive";
+				filesystem = "ext4";
+                                compressed = true;
+				preserve-attributes = true;
+                        }
+                        );
+                        bootenv: (
+                        {
+                                name = "default";
+                                value = "rootfs1";
+                        }
+			);
+		}
+		rootfs1:
+                {
+			scripts: (
+        		{
+			        filename = "preinst-rootfs2.sh";
+                		type = "preinstall";
+        		},
+			{
+				filename = "postinst.sh";
+				type = "postinstall";
+			}
+			);
+                        files: (
+                        {
+				filename = "core-image-ketop-debug-ketop.tar.gz";
+                                device = "/dev/disk/by-partlabel/rootfs2";
+				path = "/";
+				type = "archive";
+				filesystem = "ext4";
+				preserve-attributes = true;
+                                compressed = true;
+                        }
+                        );
+                        bootenv: (
+                        {
+                                name = "default";
+                                value = "rootfs2";
+                        }
+			);
+		}
+	};
+}
