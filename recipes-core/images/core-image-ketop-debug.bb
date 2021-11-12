@@ -11,11 +11,10 @@ IMAGE_INSTALL += "packagegroup-core-buildessential \
 	          stress \
 		  git \
 		  netcat-openbsd \
-		  less \
 		  pstree \
 		  cmake \
+		  patch \
 		  iotop \
-		  htop \
 		  joe \
 		  lsof \
 		  parted \
@@ -27,4 +26,5 @@ IMAGE_INSTALL += "packagegroup-core-buildessential \
 		  dmidecode \		  
 		  lmsensors-sensorsdetect \
 		  lmsensors-sensors \
+		  vim \
 		  "

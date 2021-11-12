@@ -1,0 +1,57 @@
+software =
+{
+        version = "1.0.0";        
+        stable:
+        {
+                rootfs2:
+                {
+			scripts: (
+        		{
+			        filename = "preinst-rootfs1.sh";
+                		type = "preinstall";
+        		},
+			{
+				filename = "postinst.sh";
+				type = "postinstall";
+			}
+			);
+                        images: (
+                        {
+                                filename = "core-image-ketop-production-ketop.squashfs-xz";
+                                device = "/dev/disk/by-partlabel/rootfs1";
+                        }
+                        );
+                        bootenv: (
+                        {
+                                name = "default";
+                                value = "rootfs1";
+                        }
+			);
+		}
+		rootfs1:
+                {
+			scripts: (
+        		{
+			        filename = "preinst-rootfs2.sh";
+                		type = "preinstall";
+        		},
+			{
+				filename = "postinst.sh";
+				type = "postinstall";
+			}
+			);
+                        images: (
+                        {
+				filename = "core-image-ketop-production-ketop.squashfs-xz";
+                                device = "/dev/disk/by-partlabel/rootfs2";
+                        }
+                        );
+                        bootenv: (
+                        {
+                                name = "default";
+                                value = "rootfs2";
+                        }
+			);
+		}
+	};
+}

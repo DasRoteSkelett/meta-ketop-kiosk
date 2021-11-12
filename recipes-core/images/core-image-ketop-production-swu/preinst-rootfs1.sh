@@ -6,4 +6,3 @@ fi
 
 umount /dev/disk/by-partlabel/rootfs1 2> /dev/null || /bin/true
 
-yes | mkfs.ext4 /dev/disk/by-partlabel/rootfs1 2> /dev/null

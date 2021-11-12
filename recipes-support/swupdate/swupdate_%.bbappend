@@ -4,7 +4,7 @@ SRC_URI += "file://defconfig \
 	    file://update-ketop.sh \
 	    "
 
-RDEPENDS_${PN} += " bash "
+RDEPENDS:${PN} += " bash "
 
 
 do_install:append() {
