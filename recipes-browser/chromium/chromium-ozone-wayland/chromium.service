@@ -1,0 +1,16 @@
+[Unit]
+Description=Chromium Kiosk Mode
+RequiresMountsFor=/run
+RequiresMountsFor=/home/weston
+Requires=weston.service graphical.target
+After=weston.service graphical.target
+
+[Service]
+User=weston
+Environment="WAYLAND_DISPLAY=wayland-0"
+Environment="XDG_RUNTIME_DIR=/run/user/1000"
+
+ExecStart=/usr/bin/chromium --app --disable-infobar --disable-session-crashed-bubble --noerrdialogs --kiosk --no-errors --safebrowsing-disable-auto-update --user-data-dir=/home/weston https://www.rethinkrobotics.com
+
+[Install]
+WantedBy=graphical.target
