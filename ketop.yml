@@ -1,0 +1,90 @@
+# Every file needs to contain a header, that provides kas with information
+# about the context of this file.
+header:
+  # The `version` entry in the header describes for which configuration
+  # format version this file was created for. It is used by kas to figure
+  # out if it is compatible with this file. The version is an integer that
+  # is increased on every format change.
+  version: 9
+# The machine as it is written into the `local.conf` of bitbake.
+machine: ketop
+# The distro name as it is written into the `local.conf` of bitbake.
+distro: rr-systemd-wayland
+target:
+  - core-image-ketop-debug
+  - core-image-ketop-debug-swu
+  - core-image-ketop-production
+  - core-image-ketop-production-swu
+  
+repos:
+  # This entry includes the repository where the config file is located
+  # to the bblayers.conf:
+  poky:
+    url: "git://git.yoctoproject.org/poky"
+    refspec: 98d101475ac9b6339c71f33221b6e0e5951e8a6a
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+  meta-openembedded:
+    url: "git://git.openembedded.org/meta-openembedded"
+    refspec: e886fc0cbac89998f675b70679d0cce6bcebfb7f
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
+      meta-initramfs:
+  meta-intel:
+    url: "git://git.yoctoproject.org/meta-intel"
+    refspec: d0f1c1ebfd9b7fe8d22c6a62208f78bccc6f3bf6
+  meta-swupdate:
+    url: "https://github.com/sbabic/meta-swupdate.git"
+    refspec: 3793af1b6b0f1fe9769368e78fc78c91cb8dd8c9
+  meta-clang:
+    url: "https://github.com/kraj/meta-clang"
+    refspec: 826f7287ffb8ae87bd843ecfe4a21a661bb03294
+  meta-browser:
+    url: "https://github.com/OSSystems/meta-browser.git"
+    refspec: 03a2663504116860c21fcd13054b88cf1783372c
+    layers:
+      meta-chromium:
+  meta-rr-distro:
+    url: "https://github.com/DasRoteSkelett/meta-rr-distro.git"
+    refspec: a61ab182937b63fc049f95baefeaad9deadada8f
+  meta-ketop:
+    url: "https://github.com/DasRoteSkelett/meta-ketop.git"
+    refspec: 48af61ab6aa7bc40bbffdbf26f0f4d6c927618fb
+  meta-ketop-kiosk:
+
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+
+local_conf_header:
+  standard:
+    CONF_VERSION = "1"
+    
+  diskmon: |
+    BB_DISKMON_DIRS = "\
+        STOPTASKS,${TMPDIR},1G,100K \
+        STOPTASKS,${DL_DIR},1G,100K \
+        STOPTASKS,${SSTATE_DIR},1G,100K \
+        STOPTASKS,/tmp,100M,100K \
+        ABORT,${TMPDIR},100M,1K \
+        ABORT,${DL_DIR},100M,1K \
+        ABORT,${SSTATE_DIR},100M,1K \
+        ABORT,/tmp,10M,1K"
+
+  buildinfo: |
+    INHERIT += " image-buildinfo buildhistory "
+    BUILDHISTORY_COMMIT = "1"
+
+  optimize: |
+    USER_CLASSES = "buildstats"
+
+  licenses: |
+    COPY_LIC_MANIFEST = "1"
+    COPY_LIC_DIRS = "1"
+    LICENSE_CREATE_PACKAGE = "1"
