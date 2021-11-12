@@ -1,0 +1,24 @@
+From a4274fa17b40b9f0fe8eebb645812f784da8fc60 Mon Sep 17 00:00:00 2001
+From: Matthias Schoepfer <m.schoepfer@rethinkrobotics.com>
+Date: Fri, 12 Nov 2021 11:24:06 +0100
+Subject: [PATCH] Added Rule for fb0 to systemd.rules
+
+Added a rule for fb0 such that jobs can depend on appearance
+of fb0 device (i.e. psplash)
+
+Signed-off-by: Matthias Schoepfer <m.schoepfer@rethinkrobotics.com>
+---
+ rules.d/99-systemd.rules.in | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/rules.d/99-systemd.rules.in b/rules.d/99-systemd.rules.in
+index 25b8a590a6..982c0834a3 100644
+--- a/rules.d/99-systemd.rules.in
++++ b/rules.d/99-systemd.rules.in
+@@ -73,4 +73,6 @@ SUBSYSTEM=="misc", KERNEL=="rfkill", TAG+="systemd", ENV{SYSTEMD_WANTS}+="system
+ SUBSYSTEM=="module", KERNEL=="fuse", TAG+="systemd", ENV{SYSTEMD_WANTS}+="sys-fs-fuse-connections.mount"
+ SUBSYSTEM=="module", KERNEL=="configfs", TAG+="systemd", ENV{SYSTEMD_WANTS}+="sys-kernel-config.mount"
+ 
++KERNEL=="fb0", TAG+="systemd"
++
+ LABEL="systemd_end"
