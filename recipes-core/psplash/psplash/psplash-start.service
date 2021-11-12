@@ -1,0 +1,14 @@
+[Unit]
+Description=Start psplash boot splash screen
+DefaultDependencies=no
+RequiresMountsFor=/run
+BindsTo=dev-fb0.device
+After=dev-fb0.device
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/psplash --angle 180 -n
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target
