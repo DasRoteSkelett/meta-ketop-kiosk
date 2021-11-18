@@ -10,7 +10,7 @@ User=weston
 Environment="WAYLAND_DISPLAY=wayland-0"
 Environment="XDG_RUNTIME_DIR=/run/user/1000"
 
-ExecStart=/usr/bin/chromium --app --disable-infobar --disable-session-crashed-bubble --noerrdialogs --kiosk --no-errors --safebrowsing-disable-auto-update --user-data-dir=/home/weston https://www.rethinkrobotics.com
+ExecStart=/usr/bin/chromium --ignore-gpu-blocklist --app --enable-native-gpu-memory-buffers --gpu-rasterization-msaa-sample-count=0 --disable-infobar --disable-session-crashed-bubble --noerrdialogs --enable-accelerated-2d-canvas --enable-gpu-rasterization --enable-zero-copy  --kiosk --no-errors --safebrowsing-disable-auto-update --user-data-dir=/home/weston --disable-audio-output https://www.rethinkrobotics.com
 
 [Install]
 WantedBy=graphical.target
