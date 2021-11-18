@@ -53,7 +53,7 @@ repos:
     refspec: a61ab182937b63fc049f95baefeaad9deadada8f
   meta-ketop:
     url: "https://github.com/DasRoteSkelett/meta-ketop.git"
-    refspec: 48af61ab6aa7bc40bbffdbf26f0f4d6c927618fb
+    refspec: 74fb05670b69b7576e6cc5399cb78b64104f652c
   meta-ketop-kiosk:
 
 bblayers_conf_header:
