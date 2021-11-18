@@ -27,4 +27,6 @@ IMAGE_INSTALL += "packagegroup-core-buildessential \
 		  lmsensors-sensorsdetect \
 		  lmsensors-sensors \
 		  vim \
+		  libva-utils \
+		  powertop \
 		  "
